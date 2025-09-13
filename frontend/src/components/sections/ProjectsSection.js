@@ -7,19 +7,19 @@ const ProjectsSection = () => {
       title: 'Prediction-Market Aggregation Agent',
       description: 'Built a multi-agent pipeline for prediction-market data; achieved 85%+ accuracy & 95% reliability. Integrated RAG-based assistant for natural language queries.',
       highlights: ['Multi-agent pipeline', '85%+ accuracy', 'RAG assistant'],
-      github: 'https://github.com/Prithwis-AlAgent/crewai-gambling-unifier'
+      github: 'https://github.com/Prithwis-AIAgent/Prediction-Market-AggregationAgent-system'
     },
     {
       title: 'Sidekick Personal Co-Worker (Nero)',
       description: 'AI-powered personal assistant with LangGraph + Gradio. Features web browsing, file management, Wikipedia integration, notifications, and auto browser cleanup.',
       highlights: ['LangGraph + Gradio', 'Personal Assistant', 'GPT-5 Nano Powered'],
-      github: 'https://github.com/Prithwis-AlAgent/Personal_Sidekick_Nero'
+      github: 'https://github.com/Prithwis-AIAgent/Personal_SideKick_Nero'
     },
     {
       title: 'ResumeReach AI',
       description: 'AI automation system for personalized job applications. Generates tailored cover letters, emails & follow-ups with analytics and cost optimization.',
       highlights: ['AI Automation', 'Personalized Applications', 'Analytics & Cost Optimization'],
-      github: 'https://github.com/Prithwis-AlAgent/ResumeReach-Al'
+      github: 'https://github.com/Prithwis-AIAgent/ResumeReach_AI'
     }
   ];
 
