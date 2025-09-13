@@ -5,7 +5,7 @@ services:
     env: node
     region: oregon
     plan: free
-    rootDir: backend
+    rootDir: ./backend
     buildCommand: npm install
     startCommand: npm start
     envVars:
@@ -22,7 +22,7 @@ services:
   - type: web
     name: prithwis-portfolio-frontend
     env: static
-    rootDir: frontend
+    rootDir: ./frontend
     buildCommand: npm install && npm run build
     staticPublishPath: build
     routes:

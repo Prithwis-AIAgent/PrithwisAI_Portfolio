@@ -26,18 +26,21 @@ Deploy your full-stack portfolio to Render with separate frontend and backend se
    - Connect GitHub repository: `PrithwisAI_Portfolio`
    - Name: `prithwis-portfolio-backend`
 
-2. **Configure Backend Settings:**
+2. **Configure Backend Settings (CRITICAL - Follow Exactly):**
    ```
    Name: prithwis-portfolio-backend
    Region: Oregon (US West)
    Branch: main
-   Root Directory: backend
+   Root Directory: ./backend
    Runtime: Node
    Build Command: npm install
    Start Command: npm start
    ```
    
-   **Important**: Make sure "Root Directory" is set to `backend` (not empty or `/`)
+   **🚨 CRITICAL**: 
+   - Root Directory MUST be: `./backend` (with the dot-slash)
+   - If you see "Auto-Deploy: Yes", that's correct
+   - Make sure it shows "Detected package.json in ./backend"
 
 3. **Set Environment Variables:**
    - Click "Environment" tab
@@ -61,16 +64,18 @@ Deploy your full-stack portfolio to Render with separate frontend and backend se
    - Connect same GitHub repository: `PrithwisAI_Portfolio`
    - Name: `prithwis-portfolio-frontend`
 
-2. **Configure Frontend Settings:**
+2. **Configure Frontend Settings (CRITICAL - Follow Exactly):**
    ```
    Name: prithwis-portfolio-frontend
    Branch: main
-   Root Directory: frontend
+   Root Directory: ./frontend
    Build Command: npm install && npm run build
    Publish Directory: build
    ```
    
-   **Important**: Make sure "Root Directory" is set to `frontend` (not empty or `/`)
+   **🚨 CRITICAL**: 
+   - Root Directory MUST be: `./frontend` (with the dot-slash)
+   - Publish Directory should be just: `build` (not `./frontend/build`)
 
 3. **Set Environment Variables:**
    - Add environment variable:
@@ -105,16 +110,34 @@ Deploy your full-stack portfolio to Render with separate frontend and backend se
 
 ## 🚨 Troubleshooting
 
+### "Couldn't find package.json" Error:
+**This is the most common issue!**
+
+1. **Check Root Directory Setting:**
+   - Go to your service settings
+   - Root Directory should be: `./backend` or `./frontend`
+   - NOT: `backend`, `/backend`, or empty
+
+2. **If still failing, try this:**
+   - Delete the service
+   - Create new service
+   - When connecting repo, make sure you see the file structure
+   - Set Root Directory to `./backend` BEFORE clicking "Create Service"
+
+3. **Alternative Fix:**
+   - In service settings → "Environment"
+   - Add: `BUILD_PATH=./backend` (for backend service)
+
 ### Backend Issues:
 1. **Service won't start:**
    - Check build logs in Render dashboard
-   - Verify environment variables are set
-   - Check `package.json` scripts
+   - Verify Root Directory is `./backend`
+   - Check environment variables are set
 
 2. **API not responding:**
    - Check service logs
    - Verify BREVO_API_KEY is correct
-   - Test health endpoint
+   - Test health endpoint: `https://your-backend-url.onrender.com/health`
 
 ### Frontend Issues:
 1. **Build fails:**
