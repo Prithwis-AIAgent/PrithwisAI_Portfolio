@@ -10,76 +10,76 @@ const fetch = require('node-fetch');
  * @param {Object} res - HTTP response object
  */
 module.exports = async (req, res) => {
-  // Set CORS headers to allow frontend requests
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    // Set CORS headers to allow frontend requests
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  // Handle preflight OPTIONS request
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-
-  // Only accept POST requests
-  if (req.method !== 'POST') {
-    return res.status(405).json({ 
-      success: false,
-      message: 'Method Not Allowed. Only POST requests are accepted.' 
-    });
-  }
-
-  try {
-    // Extract form data from request body
-    const { name, email, message } = req.body;
-
-    // Validate required fields
-    if (!name || !email || !message) {
-      return res.status(400).json({
-        success: false,
-        message: 'Missing required fields. Please provide name, email, and message.'
-      });
+    // Handle preflight OPTIONS request
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
     }
 
-    // Validate email format (basic validation)
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return res.status(400).json({
-        success: false,
-        message: 'Invalid email format.'
-      });
+    // Only accept POST requests
+    if (req.method !== 'POST') {
+        return res.status(405).json({
+            success: false,
+            message: 'Method Not Allowed. Only POST requests are accepted.'
+        });
     }
 
-    // Check for environment variables
-    const brevoApiKey = process.env.BREVO_API_KEY;
-    if (!brevoApiKey) {
-      console.error('BREVO_API_KEY environment variable is not set');
-      return res.status(500).json({
-        success: false,
-        message: 'Server configuration error. Please try again later.'
-      });
-    }
+    try {
+        // Extract form data from request body
+        const { name, email, message } = req.body;
 
-    // Brevo API configuration
-    const brevoApiUrl = 'https://api.brevo.com/v3/smtp/email';
-    
-    // Email configuration - Update these with your verified Brevo details
-    const senderEmail = process.env.SENDER_EMAIL || 'noreply@prithwisdas.com';
-    const senderName = 'Portfolio Contact Form';
-    const recipientEmail = process.env.RECIPIENT_EMAIL || 'daasprithwis864@gmail.com';
-    const recipientName = 'Prithwis Das';
+        // Validate required fields
+        if (!name || !email || !message) {
+            return res.status(400).json({
+                success: false,
+                message: 'Missing required fields. Please provide name, email, and message.'
+            });
+        }
 
-    // Prepare email data for Brevo API
-    const emailData = {
-      sender: {
-        name: senderName,
-        email: senderEmail,
-      },
-      to: [{
-        email: recipientEmail,
-        name: recipientName,
-      }],
-      subject: `New Portfolio Contact: ${name}`,
-      htmlContent: `
+        // Validate email format (basic validation)
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid email format.'
+            });
+        }
+
+        // Check for environment variables
+        const brevoApiKey = process.env.BREVO_API_KEY;
+        if (!brevoApiKey) {
+            console.error('BREVO_API_KEY environment variable is not set');
+            return res.status(500).json({
+                success: false,
+                message: 'Server configuration error. Please try again later.'
+            });
+        }
+
+        // Brevo API configuration
+        const brevoApiUrl = 'https://api.brevo.com/v3/smtp/email';
+
+        // Email configuration - Update these with your verified Brevo details
+        const senderEmail = process.env.SENDER_EMAIL || 'noreply@prithwisdas.com';
+        const senderName = 'Portfolio Contact Form';
+        const recipientEmail = process.env.RECIPIENT_EMAIL || 'daasprithwis864@gmail.com';
+        const recipientName = 'Prithwis Das';
+
+        // Prepare email data for Brevo API
+        const emailData = {
+            sender: {
+                name: senderName,
+                email: senderEmail,
+            },
+            to: [{
+                email: recipientEmail,
+                name: recipientName,
+            }],
+            subject: `New Portfolio Contact: ${name}`,
+            htmlContent: `
         <!DOCTYPE html>
         <html>
         <head>
@@ -120,8 +120,8 @@ module.exports = async (req, res) => {
         </body>
         </html>
       `,
-      // Also include plain text version
-      textContent: `
+            // Also include plain text version
+            textContent: `
 New Contact Form Submission
 
 Name: ${name}
@@ -133,55 +133,55 @@ ${message}
 ---
 Sent from Portfolio Contact Form
       `.trim(),
-    };
+        };
 
-    // Make API request to Brevo
-    const response = await fetch(brevoApiUrl, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'api-key': brevoApiKey,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(emailData),
-    });
+        // Make API request to Brevo
+        const response = await fetch(brevoApiUrl, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'api-key': brevoApiKey,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(emailData),
+        });
 
-    // Handle Brevo API response
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Brevo API Error:', {
-        status: response.status,
-        statusText: response.statusText,
-        error: errorData
-      });
-      
-      return res.status(500).json({
-        success: false,
-        message: 'Failed to send email. Please try again later or contact directly.'
-      });
+        // Handle Brevo API response
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('Brevo API Error:', {
+                status: response.status,
+                statusText: response.statusText,
+                error: errorData
+            });
+
+            return res.status(500).json({
+                success: false,
+                message: 'Failed to send email. Please try again later or contact directly.'
+            });
+        }
+
+        // Success response
+        const responseData = await response.json();
+        console.log('Email sent successfully:', responseData);
+
+        return res.status(200).json({
+            success: true,
+            message: 'Thank you for your message! I will get back to you soon.',
+            messageId: responseData.messageId
+        });
+
+    } catch (error) {
+        // Log error for debugging
+        console.error('Contact form error:', {
+            message: error.message,
+            stack: error.stack,
+            timestamp: new Date().toISOString()
+        });
+
+        return res.status(500).json({
+            success: false,
+            message: 'An unexpected error occurred. Please try again later.'
+        });
     }
-
-    // Success response
-    const responseData = await response.json();
-    console.log('Email sent successfully:', responseData);
-
-    return res.status(200).json({
-      success: true,
-      message: 'Thank you for your message! I will get back to you soon.',
-      messageId: responseData.messageId
-    });
-
-  } catch (error) {
-    // Log error for debugging
-    console.error('Contact form error:', {
-      message: error.message,
-      stack: error.stack,
-      timestamp: new Date().toISOString()
-    });
-
-    return res.status(500).json({
-      success: false,
-      message: 'An unexpected error occurred. Please try again later.'
-    });
-  }
 };
