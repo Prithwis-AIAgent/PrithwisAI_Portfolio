@@ -74,36 +74,25 @@ npm test
 
 ## 🌐 Deployment
 
-### Deploy to Vercel
+### Deploy to Render
 
-1. **Install Vercel CLI** (if not already installed):
-   ```bash
-   npm install -g vercel
-   ```
+1. **Create Web Service** on Render:
+   - Connect GitHub repository
+   - Set root directory to `backend`
+   - Build command: `npm install`
+   - Start command: `npm start`
 
-2. **Login to Vercel**:
-   ```bash
-   vercel login
-   ```
+2. **Set Environment Variables** in Render Dashboard:
+   - `BREVO_API_KEY`: Your Brevo API key
+   - `SENDER_EMAIL`: daasprithwis864@gmail.com
+   - `RECIPIENT_EMAIL`: daasprithwis864@gmail.com
+   - `NODE_ENV`: production
 
-3. **Deploy**:
-   ```bash
-   npm run deploy
-   ```
+3. **Auto-Deploy**: 
+   - Push to GitHub main branch
+   - Render automatically rebuilds and deploys
 
-4. **Set Environment Variables** in Vercel Dashboard:
-   - Go to your project settings
-   - Add environment variables:
-     - `BREVO_API_KEY`
-     - `SENDER_EMAIL`
-     - `RECIPIENT_EMAIL`
-
-### Alternative: GitHub Integration
-
-1. Push your code to GitHub
-2. Connect your GitHub repo to Vercel
-3. Set environment variables in Vercel dashboard
-4. Auto-deploy on every push
+See [RENDER_DEPLOYMENT.md](../RENDER_DEPLOYMENT.md) for detailed instructions.
 
 ## 📧 Email Configuration
 

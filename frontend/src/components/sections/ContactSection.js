@@ -19,7 +19,8 @@ const ContactSection = () => {
 
     try {
       // Send to backend API
-      const response = await fetch('/api/contact', {
+      const apiUrl = process.env.REACT_APP_API_URL || 'https://prithwis-portfolio-backend.onrender.com/api/contact';
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -119,11 +120,10 @@ const ContactSection = () => {
             </div>
 
             {status && (
-              <div className={`text-center mt-4 p-3 rounded-md ${
-                status.startsWith('Error') || status.startsWith('Network') 
-                  ? 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800' 
+              <div className={`text-center mt-4 p-3 rounded-md ${status.startsWith('Error') || status.startsWith('Network')
+                  ? 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800'
                   : 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 border border-green-200 dark:border-green-800'
-              }`}>
+                }`}>
                 {status}
               </div>
             )}
