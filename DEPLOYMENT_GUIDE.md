@@ -26,21 +26,21 @@ Deploy your full-stack portfolio to Render with separate frontend and backend se
    - Connect GitHub repository: `PrithwisAI_Portfolio`
    - Name: `prithwis-portfolio-backend`
 
-2. **Configure Backend Settings (CRITICAL - Follow Exactly):**
+2. **Configure Backend Settings (SIMPLIFIED APPROACH):**
    ```
    Name: prithwis-portfolio-backend
    Region: Oregon (US West)
    Branch: main
-   Root Directory: ./backend
+   Root Directory: (leave empty or use .)
    Runtime: Node
-   Build Command: npm install
+   Build Command: npm run install-backend
    Start Command: npm start
    ```
    
-   **🚨 CRITICAL**: 
-   - Root Directory MUST be: `./backend` (with the dot-slash)
-   - If you see "Auto-Deploy: Yes", that's correct
-   - Make sure it shows "Detected package.json in ./backend"
+   **🚨 NEW APPROACH**: 
+   - Leave Root Directory EMPTY or set to `.`
+   - Use the root package.json which will handle routing to backend
+   - This avoids the directory detection issues
 
 3. **Set Environment Variables:**
    - Click "Environment" tab
@@ -64,18 +64,19 @@ Deploy your full-stack portfolio to Render with separate frontend and backend se
    - Connect same GitHub repository: `PrithwisAI_Portfolio`
    - Name: `prithwis-portfolio-frontend`
 
-2. **Configure Frontend Settings (CRITICAL - Follow Exactly):**
+2. **Configure Frontend Settings (SIMPLIFIED APPROACH):**
    ```
    Name: prithwis-portfolio-frontend
    Branch: main
-   Root Directory: ./frontend
-   Build Command: npm install && npm run build
-   Publish Directory: build
+   Root Directory: (leave empty or use .)
+   Build Command: npm run build-frontend
+   Publish Directory: frontend/build
    ```
    
-   **🚨 CRITICAL**: 
-   - Root Directory MUST be: `./frontend` (with the dot-slash)
-   - Publish Directory should be just: `build` (not `./frontend/build`)
+   **🚨 NEW APPROACH**: 
+   - Leave Root Directory EMPTY or set to `.`
+   - Use root package.json script to build frontend
+   - Set Publish Directory to `frontend/build`
 
 3. **Set Environment Variables:**
    - Add environment variable:
@@ -111,22 +112,22 @@ Deploy your full-stack portfolio to Render with separate frontend and backend se
 ## 🚨 Troubleshooting
 
 ### "Couldn't find package.json" Error:
-**This is the most common issue!**
+**This is the most common issue! Here are 3 solutions:**
 
-1. **Check Root Directory Setting:**
-   - Go to your service settings
-   - Root Directory should be: `./backend` or `./frontend`
-   - NOT: `backend`, `/backend`, or empty
+**Solution 1: Use Root Package.json (Recommended)**
+- Root Directory: (empty) or `.`
+- Build Command: `npm run install-backend`
+- Start Command: `npm start`
 
-2. **If still failing, try this:**
-   - Delete the service
-   - Create new service
-   - When connecting repo, make sure you see the file structure
-   - Set Root Directory to `./backend` BEFORE clicking "Create Service"
+**Solution 2: Manual Directory Setup**
+- Root Directory: `backend`
+- Build Command: `npm install`
+- Start Command: `npm start`
 
-3. **Alternative Fix:**
-   - In service settings → "Environment"
-   - Add: `BUILD_PATH=./backend` (for backend service)
+**Solution 3: If still failing**
+- Delete the service completely
+- Create new service
+- Try Solution 1 first, then Solution 2
 
 ### Backend Issues:
 1. **Service won't start:**
