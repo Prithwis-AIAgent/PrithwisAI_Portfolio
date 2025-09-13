@@ -36,6 +36,8 @@ Deploy your full-stack portfolio to Render with separate frontend and backend se
    Build Command: npm install
    Start Command: npm start
    ```
+   
+   **Important**: Make sure "Root Directory" is set to `backend` (not empty or `/`)
 
 3. **Set Environment Variables:**
    - Click "Environment" tab
@@ -67,6 +69,8 @@ Deploy your full-stack portfolio to Render with separate frontend and backend se
    Build Command: npm install && npm run build
    Publish Directory: build
    ```
+   
+   **Important**: Make sure "Root Directory" is set to `frontend` (not empty or `/`)
 
 3. **Set Environment Variables:**
    - Add environment variable:
