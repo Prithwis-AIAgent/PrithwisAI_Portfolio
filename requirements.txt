@@ -1,0 +1,31 @@
+# Frontend Requirements
+# Node.js version: 14.x or higher
+# Package manager: npm or yarn
+
+# Main Dependencies (automatically installed via npm install in frontend/)
+# - React 18.2.0
+# - React DOM 18.2.0
+# - React Scripts 5.0.1
+# - Tailwind CSS 3.3.2
+# - PostCSS 8.4.24
+# - Autoprefixer 10.4.14
+
+# Development Dependencies
+# - @testing-library/jest-dom 5.16.4
+# - @testing-library/react 13.3.0
+# - @testing-library/user-event 13.5.0
+# - web-vitals 2.1.4
+
+# Installation Instructions:
+# 1. Ensure Node.js (v14+) is installed
+# 2. Navigate to frontend directory: cd frontend
+# 3. Install dependencies: npm install
+# 4. Start development server: npm start
+# 5. Build for production: npm run build
+
+# Backend Requirements (to be added when backend is implemented)
+# - Python 3.8+
+# - Flask/FastAPI
+# - Database (PostgreSQL/MongoDB)
+# - Email service integration
+# - Additional backend dependencies will be listed here

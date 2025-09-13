@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "functions": {
+    "api/contact.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/contact",
+      "dest": "/api/contact.js"
+    }
+  ],
+  "env": {
+    "BREVO_API_KEY": "@brevo-api-key",
+    "SENDER_EMAIL": "@sender-email",
+    "RECIPIENT_EMAIL": "@recipient-email"
+  }
+}
