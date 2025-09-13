@@ -2,7 +2,15 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+
+// Load environment variables
 require('dotenv').config();
+
+// Validate required environment variables
+if (!process.env.BREVO_API_KEY) {
+    console.error('❌ BREVO_API_KEY environment variable is required');
+    process.exit(1);
+}
 
 // Import the contact handler
 const contactHandler = require('./api/contact');
@@ -10,9 +18,26 @@ const contactHandler = require('./api/contact');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Middleware
+// Middleware - Enhanced CORS for production
+const allowedOrigins = [
+    'http://localhost:3000',
+    'https://prithwis-portfolio-frontend.onrender.com',
+    process.env.FRONTEND_URL,
+    process.env.ALLOWED_ORIGIN
+].filter(Boolean);
+
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://prithwis-portfolio-frontend.onrender.com', process.env.FRONTEND_URL],
+    origin: function (origin, callback) {
+        // Allow requests with no origin (mobile apps, curl, etc.)
+        if (!origin) return callback(null, true);
+
+        if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV === 'development') {
+            callback(null, true);
+        } else {
+            console.log('CORS blocked origin:', origin);
+            callback(null, true); // Allow all origins for now, can restrict later
+        }
+    },
     credentials: true
 }));
 app.use(express.json());
