@@ -3,23 +3,18 @@
 A modern, full-stack portfolio website built with React and Node.js showcasing AI engineering expertise and projects. Features a working contact form with email integration.
 
 ## 🌟 Live Demo
-- **Website**: [Your deployed URL will be here]
-- **Contact Form**: Fully functional with email notifications
-
-## 🚀 Features
-- **Frontend**: React 18 + Tailwind CSS
-- **Backend**: Node.js serverless functions
-- **Email**: Brevo integration for contact form
-- **Responsive**: Mobile-first design
-- **Dark Mode**: Toggle between light/dark themes
-- **Performance**: Optimized for speed and SEO
+- **Website**: [https://prithwisai-dev.onrender.com/](https://prithwisai-dev.onrender.com/)
+- **Backend API**: [https://prithwisai-portfolio.onrender.com](https://prithwisai-portfolio.onrender.com)
+- **Contact Form**: Fully functional with email notifications via Brevo
 
 ## 🚀 Features
 
-- **Responsive Design**: Fully responsive across all devices
-- **Dark/Light Mode**: Toggle between themes with smooth transitions
+- **Live Portfolio**: [https://prithwisai-dev.onrender.com/](https://prithwisai-dev.onrender.com/)
+- **Working Contact Form**: Real email delivery via Brevo API
+- **Full-Stack Architecture**: React frontend + Node.js backend
+- **Responsive Design**: Mobile-first design with dark/light mode toggle
 - **Modern UI**: Clean, professional design with smooth animations
-- **Performance Optimized**: Fast loading and smooth scrolling
+- **Performance Optimized**: Fast loading and SEO-friendly
 - **Accessibility**: WCAG compliant with proper ARIA labels
 
 ## 🛠️ Tech Stack
@@ -28,7 +23,14 @@ A modern, full-stack portfolio website built with React and Node.js showcasing A
 - **Backend**: Node.js + Express.js
 - **Email Service**: Brevo API integration
 - **Deployment**: Render (full-stack hosting)
-- **Responsive Design** - Mobile-first approach
+- **Version Control**: Git + GitHub
+
+## 🌐 Live Deployment
+
+- **Portfolio Website**: [https://prithwisai-dev.onrender.com/](https://prithwisai-dev.onrender.com/)
+- **Backend API**: [https://prithwisai-portfolio.onrender.com](https://prithwisai-portfolio.onrender.com)
+- **Health Check**: [https://prithwisai-portfolio.onrender.com/health](https://prithwisai-portfolio.onrender.com/health)
+- **Contact API**: `POST https://prithwisai-portfolio.onrender.com/api/contact`
 
 ## 📁 Project Structure
 
@@ -91,6 +93,18 @@ npm start
 ```
 
 4. **Open [http://localhost:3000](http://localhost:3000)** to view the portfolio.
+
+## 🧪 Test the Live Site
+
+### Contact Form Test:
+1. Visit [https://prithwisai-dev.onrender.com/](https://prithwisai-dev.onrender.com/)
+2. Scroll to the Contact section
+3. Fill out the form and submit
+4. Check `daasprithwis864@gmail.com` for the email
+
+### API Health Check:
+- Visit: [https://prithwisai-portfolio.onrender.com/health](https://prithwisai-portfolio.onrender.com/health)
+- Should return: `{"status": "OK", "message": "Prithwis Portfolio Backend API is running"}`
 
 ## 🌐 Deployment
 
