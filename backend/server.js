@@ -21,40 +21,38 @@ const PORT = process.env.PORT || 3001;
 // Middleware - Enhanced CORS for production
 const allowedOrigins = [
     'http://localhost:3000',
+    'https://prithwisai-dev.onrender.com',
     'https://prithwis-portfolio-frontend.onrender.com',
     process.env.FRONTEND_URL,
     process.env.ALLOWED_ORIGIN
 ].filter(Boolean);
 
 app.use(cors({
-    origin: function (origin, callback) {
-        // Allow requests with no origin (mobile apps, curl, etc.)
-        if (!origin) return callback(null, true);
-
-        if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV === 'development') {
-            callback(null, true);
-        } else {
-            console.log('CORS blocked origin:', origin);
-            callback(null, true); // Allow all origins for now, can restrict later
-        }
-    },
-    credentials: true
+    origin: true, // Allow all origins for now
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Health check endpoint
 app.get('/health', (req, res) => {
+    console.log('Health check requested from:', req.get('origin') || req.get('referer') || 'unknown');
     res.json({
         status: 'OK',
         message: 'Prithwis Portfolio Backend API is running',
         timestamp: new Date().toISOString(),
-        environment: process.env.NODE_ENV || 'development'
+        environment: process.env.NODE_ENV || 'development',
+        cors: 'enabled'
     });
 });
 
 // Contact form endpoint
 app.post('/api/contact', async (req, res) => {
+    console.log('Contact form request from:', req.get('origin') || req.get('referer') || 'unknown');
+    console.log('Request body:', req.body);
+    
     try {
         await contactHandler(req, res);
     } catch (error) {

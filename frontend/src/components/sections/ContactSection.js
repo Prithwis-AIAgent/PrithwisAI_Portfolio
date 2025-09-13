@@ -21,6 +21,7 @@ const ContactSection = () => {
       // Send to backend API - Multiple fallback URLs
       const apiUrls = [
         process.env.REACT_APP_API_URL,
+        'https://prithwisai-portfolio.onrender.com/api/contact',
         'https://prithwis-portfolio-backend.onrender.com/api/contact',
         '/api/contact' // Fallback for same-domain deployment
       ].filter(Boolean);
