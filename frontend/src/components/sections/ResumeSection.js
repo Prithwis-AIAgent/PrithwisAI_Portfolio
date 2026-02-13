@@ -2,9 +2,16 @@ import React from 'react';
 import { BriefcaseIcon, AwardIcon, GraduationCapIcon, DownloadIcon } from '../icons';
 
 const ResumeSection = () => {
-  const resumeUrl = '/Prithwis_Das_AI_Resume1.pdf';
+  const resumeUrl = '/Prithwis Das-Resume.docx';
 
   const timeline = [
+    {
+      icon: <BriefcaseIcon className="w-6 h-6 text-white" />,
+      bgColor: 'bg-indigo-500',
+      date: '3 Months (Internship)',
+      title: 'AI/LLM Intern | CrowdWisdomTrading',
+      description: 'Developed and implemented a fully automated marketing system using CrewAI. (Remote | Israel)'
+    },
     {
       icon: <BriefcaseIcon className="w-6 h-6 text-white" />,
       bgColor: 'bg-blue-500',
@@ -24,7 +31,7 @@ const ResumeSection = () => {
       bgColor: 'bg-purple-500',
       date: '2022 - 2025',
       title: 'Bachelor of Computer Applications',
-      description: 'Pursuing BCA at JIS University, West Bengal, with a current CGPA of 8.61/10.'
+      description: 'Completed BCA at JIS University, West Bengal, with a CGPA of 8.24/10.'
     }
   ];
 
@@ -75,7 +82,7 @@ const ResumeSection = () => {
             </p>
             <a
               href={resumeUrl}
-              download="Prithwis Das AI Resume.pdf"
+              download="Prithwis Das-Resume.docx"
               className="mt-8 inline-flex items-center justify-center gap-2 px-8 py-4 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-transform transform hover:scale-105"
             >
               <DownloadIcon className="w-5 h-5" />
