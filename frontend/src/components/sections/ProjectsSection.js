@@ -4,6 +4,13 @@ import { ExternalLinkIcon } from '../icons';
 const ProjectsSection = () => {
   const projects = [
     {
+      title: 'SitePilot.AI',
+      description: 'An autonomous co-browsing agent that navigates websites. Built with Next.js 15 and Google Gemini 1.5 Flash, it perceives the DOM to scroll, click, and fill forms based on natural language commands.',
+      highlights: ['Autonomous Navigation', 'Next.js 15', 'Gemini 1.5 Flash'],
+      github: 'https://github.com/Prithwis-AIAgent/SitePilot.AI',
+      demo: 'https://sitepilot-ai.vercel.app/'
+    },
+    {
       title: 'Prediction-Market Aggregation Agent',
       description: 'Built a multi-agent pipeline for prediction-market data; achieved 85%+ accuracy & 95% reliability. Integrated RAG-based assistant for natural language queries.',
       highlights: ['Multi-agent pipeline', '85%+ accuracy', 'RAG assistant'],
@@ -58,16 +65,27 @@ const ProjectsSection = () => {
                     </span>
                   ))}
                 </div>
-                <div className="mt-auto">
+                <div className="mt-auto flex items-center space-x-4">
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center font-medium text-blue-600 dark:text-blue-400 hover:underline"
                   >
-                    View on GitHub
+                    GitHub
                     <ExternalLinkIcon className="ml-2 w-4 h-4" />
                   </a>
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                    >
+                      Live Demo
+                      <ExternalLinkIcon className="ml-2 w-4 h-4" />
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

@@ -6,6 +6,7 @@ import ProjectsSection from './components/sections/ProjectsSection';
 import ResumeSection from './components/sections/ResumeSection';
 import ContactSection from './components/sections/ContactSection';
 import Footer from './components/Footer';
+import ChatWidget from './components/ChatWidget';
 
 export default function App() {
   const [theme, setTheme] = useState('light');
@@ -43,6 +44,7 @@ export default function App() {
         <ContactSection />
       </main>
       <Footer />
+      <ChatWidget />
     </div>
   );
 }
